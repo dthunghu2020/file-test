@@ -3,4 +3,27 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="status_bar">#04A1E8</color>
+    <color name="bg">#F4F4F4</color>
+
+    <color name="mau_nen">#efeff4</color>
+
+    <color name="blue">#04A1E8</color>
+    <color name="blue_2">#008CCC</color>
+
+    <color name="orange">#FF9100</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_2">#EEEEEE</color>
+    <color name="black">#000000</color>
+    <color name="black_2">#b1212121</color>
+    <color name="gray">#7A7A7A</color>
+    <color name="gray_2">#A0A0A0</color>
+    <color name="yellow">#ffc800</color>
+    <color name="red">#EE3C5E</color>
+    <color name="green">#1BC42D</color>
+
+    <color name="translucent_3">#b9000000</color>
+    <color name="translucent">#00000000</color>
 </resources>

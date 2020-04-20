@@ -1,4 +1,4 @@
-package com.example.hellowold;
+package com.example.tryall;
 
 import org.junit.Test;
 

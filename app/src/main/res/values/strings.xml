@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Hello Wold</string>
+    <string name="app_name">TryAll</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="INTER_FB" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="INTER_FB_O" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="INTER_G" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="NATIVE_L_G" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="NATIVE_BANNER_FB" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="NATIVE_L_FB" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="NATIVE_L_FB_O" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="BANNER_G" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="BANNER_FB" translatable="false">YOUR_PLACEMENT_ID</string>
+    <string name="EMAIL_DEVELOPER" translatable="false">beldum.support@gmail.com</string>
+    <string name="PLAY_STORE_DEV_URL" translatable="false">http://play.google.com/store/search?q=pub:</string>
+    <string name="INTER_UNI" translatable="false">video</string>
 </resources>
