@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -62,14 +64,14 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        receiverExitFromRateApp = new BroadcastReceiver() {
+        /*receiverExitFromRateApp = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 finish();
             }
         };
         IntentFilter i2 = new IntentFilter("exitFromRateApp");
-        registerReceiver(receiverExitFromRateApp, i2);
+        registerReceiver(receiverExitFromRateApp, i2);*/
     }
 
     private void initInterstitialAd() {
@@ -77,9 +79,11 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
         int percent = new Random().nextInt(100);
         if (percent <= 70) {
             isGgPriority = true;
+            Log.e("123", "initInterstitialAd: " + "gg");
             initGgInterstitialAd();
         } else {
             isGgPriority = false;
+            Log.e("123", "initInterstitialAd: " + "fb");
             initFbInterstitialAd();
         }
         //Dành cho game
@@ -93,31 +97,36 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
             //Truyền ID
             ggInterstitialAd.setAdUnitId(getString(R.string.INTER_G));
             // xử lí action
+
             ggInterstitialAd.setAdListener(new AdListener() {
                 @Override
                 public void onAdClosed() {
                     //loadAds
                     requestNewInterstitial();
+                    Log.e("123", "onAdClosed: Load New ADS" );
                 }
 
                 @Override
                 public void onAdLoaded() {
                     super.onAdLoaded();
+                    Log.e("123", "onAdLoaded: " );
                 }
 
                 @Override
                 public void onAdFailedToLoad(int i) {
                     super.onAdFailedToLoad(i);
                     //Fail thì load FB
-                    try {
+                    /*try {
                         if (isGgPriority) initFbInterstitialAd();
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }
+                    }*/
+                    Log.e("123", "onAdFailedToLoad: Load FB ADS" );
                 }
 
                 @Override
                 public void onAdOpened() {
+                    Log.e("123", "onAdOpened: " );
                     super.onAdOpened();
                     try {
                         //Dành cho example Game
@@ -129,6 +138,7 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
             });
             //LoadAds
             requestNewInterstitial();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -181,36 +191,41 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    Log.e("123", "onInterstitialDisplayed: " );
                 }
 
                 @Override
                 public void onInterstitialDismissed(Ad ad) {
                     //Load lại ads
+                    Log.e("123", "onInterstitialDismissed: " );
                     requestNewFBInterstitial();
                 }
 
                 @Override
                 public void onError(Ad ad, AdError adError) {
+                    Log.e("123", "onError: load GG Inter" );
                     if (!isGgPriority) initGgInterstitialAd();
                 }
 
                 @Override
                 public void onAdLoaded(Ad ad) {
-
+                    Log.e("123", "onAdLoaded: " );
+                    fbInterstitialAd.show();
                 }
 
                 @Override
                 public void onAdClicked(Ad ad) {
-
+                    Log.e("123", "onAdClicked: " );
                 }
 
                 @Override
                 public void onLoggingImpression(Ad ad) {
-
+                    Log.e("123", "onLoggingImpression: " );
                 }
             });
             //Check remove và load lại Ads
             requestNewFBInterstitial();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,6 +245,14 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id == R.id.nav_setting){
+            ggInterstitialAd.show();
+        }
+        if(id==R.id.nav_tutorial){
+            if(fbInterstitialAd!=null&&fbInterstitialAd.isAdLoaded()){
+                fbInterstitialAd.show();
+            }
+        }
         if (id == R.id.nav_policy) {
             //startActivity(new Intent(SecondActivity.this, PolicyActivity.class));
             /*if (!SecondActivity.showInterstitial()) {
@@ -241,5 +264,10 @@ public class SecondActivity  extends AppCompatActivity  implements NavigationVie
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -71,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
+        //
+        InterstitialAd mInterstitial = new InterstitialAd(this);
+        mInterstitial.setAdUnitId("your id");
+        AdRequest adRequest123 = new AdRequest.Builder()
+                .addTestDevice("some words")
+                .build();
+        mInterstitial.loadAd(adRequest123);
         //Inter
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
